@@ -4,22 +4,7 @@
 [travis]: https://travis-ci.org/TrySound/multi-entry-loader
 
 Load multiple entry points into single [webpack](https://webpack.github.io/) bundle.
-This is particularly useful for tests, but can also be used to package
-a library. The exports from all the entry points will be combined, e.g.
-
-```js
-// a.js
-export const a = 1;
-
-// b.js
-export const b = 2;
-
-// c.js
-export const c = 3;
-```
-
-Using all three files above as entry points will yield a bundle with exports for
-`a`, `b`, and `c`.
+This is particularly useful for tests, but can also be used to package a library.
 
 ## Install
 
