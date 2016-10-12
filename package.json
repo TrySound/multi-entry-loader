@@ -1,0 +1,22 @@
+{
+  "name": "multi-entry-loader",
+  "version": "1.0.0",
+  "description": "Load multiple entry points into single webpack bundle",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "url": "trysound/multi-entry-loader",
+    "type": "git"
+  },
+  "author": "Bogdan Chadkin <trysound@yandex.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "loader-utils": "^0.2.16",
+    "matched": "^0.4.4"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2"
+  }
+}
