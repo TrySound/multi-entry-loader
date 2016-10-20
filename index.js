@@ -1,5 +1,6 @@
 'use strict';
 
+const globParent = require('glob-parent');
 const matched = require('matched').promise;
 const getLoaderConfig = require('loader-utils').getLoaderConfig;
 
@@ -26,6 +27,16 @@ function multiEntryLoader(content) {
     if (!include.length) {
         throw Error('include option should be specified');
     }
+
+    const parents = include.reduce((list, pattern) => {
+        const parent = globParent(pattern);
+        if (list.indexOf(parent) === -1) {
+            list.push(parent);
+        }
+        return list;
+    }, []);
+
+    parents.forEach(parent => this.addContextDependency(parent));
 
     return matched(patterns, { realpath: true }).then(combinePaths);
 }

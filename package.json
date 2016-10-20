@@ -13,6 +13,7 @@
   "author": "Bogdan Chadkin <trysound@yandex.ru>",
   "license": "MIT",
   "dependencies": {
+    "glob-parent": "^3.0.1",
     "loader-utils": "^0.2.16",
     "matched": "^0.4.4"
   },
