@@ -5,14 +5,27 @@ function makeBundle(query) {
     const deps = [];
     const context = {
         query,
+        async() {
+            resolve()
+        },
         addContextDependency(parent) {
             deps.push(parent);
         }
     };
-    return Promise.resolve().then(() => multiEntryLoader.call(context, null)).then(code => ({
-        code,
-        deps
-    }));
+    return new Promise((resolve, reject) => {
+        context.async = () => (err, code, map) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve({
+                    code,
+                    map,
+                    deps
+                });
+            }
+        };
+        multiEntryLoader.call(context, null);
+    });
 }
 
 describe('multi-entry-loader', () => {

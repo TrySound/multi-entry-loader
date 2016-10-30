@@ -7,9 +7,10 @@ const getLoaderConfig = require('loader-utils').getLoaderConfig;
 const mapImports = d => `import ${JSON.stringify(d)};`;
 const mapExports = d => `export * from ${JSON.stringify(d)};`;
 
-function multiEntryLoader(content) {
+function multiEntryLoader(content, map) {
+    const done = this.async();
     if (content !== null) {
-        return content;
+        return done(null, content, map);
     }
 
     const options = Object.assign({
@@ -38,7 +39,7 @@ function multiEntryLoader(content) {
 
     parents.forEach(parent => this.addContextDependency(parent));
 
-    return matched(patterns, { realpath: true }).then(combinePaths);
+    return matched(patterns, { realpath: true }).then(combinePaths).then(code => done(null, code));
 }
 
 module.exports = multiEntryLoader;
