@@ -2,7 +2,7 @@
 
 const globParent = require('glob-parent');
 const matched = require('matched').promise;
-const getLoaderConfig = require('loader-utils').getLoaderConfig;
+const getOptions = require('loader-utils').getOptions;
 
 const mapImports = d => `import ${JSON.stringify(d)};`;
 const mapExports = d => `export * from ${JSON.stringify(d)};`;
@@ -17,7 +17,7 @@ function multiEntryLoader(content, map) {
         include: [],
         exclude: [],
         exports: false
-    }, getLoaderConfig(this));
+    }, getOptions(this));
 
     const include = Array.isArray(options.include) ? options.include : [options.include];
     const exclude = Array.isArray(options.exclude) ? options.exclude : [options.exclude];
